@@ -1,4 +1,8 @@
-const { ipcRenderer, contextBridge } = require('electron');
+const { writeFile } = require('fs');
+const electron = require('electron');
+const { ipcRenderer, contextBridge } = electron;
+
+console.log('ssss', electron);
 
 const recordMetaObject = {
     subscriber: null,
@@ -12,10 +16,20 @@ function showContextMenu() {
 
 
 ipcRenderer.on('context-menu-command', (e, source) => {
-    console.log('reply', e, source);
     recordMetaObject.update(source);
 });
 
+const saveRecording = async (chunks) => {
 
+    const options = { type: 'video/webm; codecs=vp9' };
+    const blob = new Blob(chunks, options);
+    const recordingBuffer = Buffer.from(await blob.arrayBuffer());
+    const filePath = ipcRenderer.sendSync('file-path');
+    console.log('path', filePath);
+    writeFile(filePath, recordingBuffer, () => {
+        console.log('Successfully saved at ', filePath);
+    });
+
+}
 //export
-contextBridge.exposeInMainWorld('rContext', { showContextMenu: showContextMenu, recordMetaObject: recordMetaObject });
+contextBridge.exposeInMainWorld('rContext', { showContextMenu: showContextMenu, recordMetaObject: recordMetaObject, saveRecording: saveRecording });

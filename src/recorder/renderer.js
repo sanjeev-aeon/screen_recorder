@@ -1,3 +1,4 @@
+
 const video = document.querySelector('video');
 const stopRecButton = document.querySelector('.button-stop');
 const save = document.querySelector('.button-save');
@@ -25,7 +26,11 @@ function handleStream(stream) {
     mediaRecorder.onstop = (e) => {
         console.log(e);
         video.pause();
+        pushToSave(chunks);
     }
+}
+const pushToSave = (chunks) => {
+    window.rContext.saveRecording(chunks);
 }
 
 const recordVideo = async (source) => {
