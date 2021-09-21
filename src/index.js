@@ -22,13 +22,11 @@ ipcMain.on('show-context-menu', (event) => {
   createMenu(event);
 });
 
-ipcMain.on('file-path', async () => {
+ipcMain.handle('file-path', async () => {
   const { filePath } = await dialog.showSaveDialog({ buttonLabel: 'Save recording', defaultPath: `rec-${Date.now()}.webm` });
+  console.log(filePath);
+  return filePath;
 
-  ipcMain.on('file-path', (event, arg) => {
-    console.log(arg) // prints "ping"
-    event.returnValue = filePath
-  })
 })
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require

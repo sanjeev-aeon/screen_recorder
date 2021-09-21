@@ -24,7 +24,7 @@ const saveRecording = async (chunks) => {
     const options = { type: 'video/webm; codecs=vp9' };
     const blob = new Blob(chunks, options);
     const recordingBuffer = Buffer.from(await blob.arrayBuffer());
-    const filePath = ipcRenderer.sendSync('file-path');
+    const filePath = await ipcRenderer.invoke('file-path');
     console.log('path', filePath);
     writeFile(filePath, recordingBuffer, () => {
         console.log('Successfully saved at ', filePath);
