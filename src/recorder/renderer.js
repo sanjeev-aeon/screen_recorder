@@ -1,9 +1,10 @@
 
 const video = document.querySelector('video');
-const stopRecButton = document.querySelector('.button-stop');
 const save = document.querySelector('.button-save');
 
 const selectScreenButton = document.querySelector('.button-select-screen');
+
+
 
 let mediaRecorder = null;
 let chunks = [];
@@ -24,7 +25,6 @@ function handleStream(stream) {
         chunks.push(e.data);
     }
     mediaRecorder.onstop = (e) => {
-        console.log(e);
         video.pause();
         pushToSave(chunks);
     }
@@ -53,7 +53,7 @@ const recordVideo = async (source) => {
         console.error(e);
     }
 };
-
+window.rContext.recordMetaObject.setSubscriber(recordVideo);
 
 save.onclick = () => {
     if (mediaRecorder) {
@@ -61,7 +61,12 @@ save.onclick = () => {
     }
 };
 
-window.rContext.recordMetaObject.setSubscriber(recordVideo);
+//update label
+const locationLabel = document.querySelector('.location');
+window.rContext.saveResultMetaData.onSuccess((filePath) => {
+    locationLabel.textContent = filePath;
+});
+
 
 
 

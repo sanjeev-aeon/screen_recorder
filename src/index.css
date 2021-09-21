@@ -16,6 +16,10 @@ body {
   box-shadow: 0 0 1px 1px #085e80;
 }
 
+.location {
+  background-color: darkgray;
+}
+
 /* .control-button:hover {
   box-shadow: 0 0 1px 1px #085e80;
 } */
