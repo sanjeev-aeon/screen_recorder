@@ -1,6 +1,6 @@
 const video = document.querySelector('video');
 const stopRecButton = document.querySelector('.button-stop');
-const playRecButton = document.querySelector('.button-play');
+const save = document.querySelector('.button-save');
 const selectScreenButton = document.querySelector('.button-select-screen');
 selectScreenButton.onclick = window.rContext.showContextMenu;
 
