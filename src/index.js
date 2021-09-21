@@ -8,7 +8,7 @@ const setSelected = (m, event) => {
 }
 
 const createMenu = async (event) => {
-  const source = await desktopCapturer.getSources({ types: ['windows', 'screen'] });
+  const source = await desktopCapturer.getSources({ types: ['window', 'screen'] });
   const menu = Menu.buildFromTemplate(source.map(m => {
     return {
       label: m.name,
