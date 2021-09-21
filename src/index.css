@@ -4,3 +4,18 @@ body {
   max-width: 38rem;
   padding: 2rem;
 }
+
+.control-button {
+  background-color: #ffffff;
+  border: #34a0ca 1px solid;
+  width: auto;
+  height: 2em;
+}
+
+.control-button:active {
+  box-shadow: 0 0 1px 1px #085e80;
+}
+
+/* .control-button:hover {
+  box-shadow: 0 0 1px 1px #085e80;
+} */

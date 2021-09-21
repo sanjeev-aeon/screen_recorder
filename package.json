@@ -13,8 +13,7 @@
   },
   "keywords": [],
   "author": {
-    "name": "Sanjeev",
-    "email": "sanjeev.shrivastava@siemens.com"
+    "name": "Sanjeev"
   },
   "license": "MIT",
   "config": {
@@ -45,7 +44,8 @@
     }
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "@electron/remote": "2.0.1"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.61",
