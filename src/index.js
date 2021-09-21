@@ -3,7 +3,7 @@ const path = require('path');
 
 //
 const setSelected = (m, event) => {
-  event.sender.send('context-menu-command', m.name);
+  event.sender.send('context-menu-command', { name: m.name, id: m.id });
   console.log(m.name);
 }
 
@@ -35,7 +35,8 @@ const createWindow = () => {
     height: 1000,
     webPreferences: {
       preload: path.join(__dirname, '/recorder/preload.js'),
-      nodeIntegration: true
+      nodeIntegration: true,
+      // contextIsolation: false
     }
   });
 
